@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
@@ -179,9 +180,11 @@ public class Page3View extends Div {
     private void createFooter(Grid.Column column) {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         Button button = new Button("Clear", VaadinIcon.RECYCLE.create());
-        button.addClickListener(e -> Notification.show("Clear action!"));
+        button.addThemeVariants(ButtonVariant.LUMO_ERROR,ButtonVariant.LUMO_LARGE);
+        button.addClickListener(e -> Notification.show("Clear action!",3000, Notification.Position.TOP_CENTER));
         horizontalLayout.add(button);
         Button buttonSave = new Button("Save", VaadinIcon.DATABASE.create());
+        buttonSave.addThemeVariants(ButtonVariant.LUMO_LARGE,ButtonVariant.LUMO_PRIMARY);
         buttonSave.addClickListener(e -> Notification.show("Save", 3000, Notification.Position.TOP_CENTER));
         horizontalLayout.add(buttonSave);
         column.setFooter(horizontalLayout);
@@ -199,6 +202,6 @@ public class Page3View extends Div {
     }
 
     private List<Person> getItems() {
-        return Arrays.asList(new Person("START", "Test", 1),new Person("START", "Test", 2));
+        return Arrays.asList(new Person("START", "Test", 1), new Person("START", "Test", 2));
     }
 }
